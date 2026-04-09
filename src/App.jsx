@@ -14,7 +14,7 @@ function App() {
     <ThemeProvider>
       <HashRouter>
         <Routes>
-          <Route element={<Layout siteName={siteConfig.name} />}>
+          <Route element={<Layout siteConfig={siteConfig} />}>
             <Route
               index
               element={

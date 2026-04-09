@@ -3,10 +3,10 @@
   "tagline": "Security Research Notebook",
   "intro": {
     "headline": "Hi, I'm W4RR1OR.",
-    "description": "I’m a cybersecurity enthusiast who enjoys solving CTF challenges and exploring different areas of security.",
-    "supporting": "I like building and breaking down systems, learning how things work, and improving my skills through hands on practice."
+    "description": "I'm a cybersecurity enthusiast who enjoys solving CTF challenges and exploring different areas of security.",
+    "supporting": "I like building and breaking systems to understand how they work. Currently breaking systems with RootRunners."
   },
-  "about": "I’m interested in cybersecurity and spend most of my time learning through CTFs and hands-on challenges. I enjoy analyzing systems, debugging issues, and understanding how things work at a deeper level, especially when it comes to vulnerabilities and exploits.",
+  "about": "I'm interested in cybersecurity and spend most of my time learning through CTFs and hands-on challenges. I enjoy analyzing systems, debugging issues, and understanding how things work at a deeper level, especially when it comes to vulnerabilities and exploits.",
   "focusTracks": [
     "reverse-engineering",
     "web-exploitation",
@@ -42,35 +42,32 @@
   ],
   "experience": [
     {
-      "organization": "DJS NSDC",
-      "role": "Marketing",
-      "period": "08/2025 - Present"
-    },
-    {
       "organization": "DJS ACM-SIGAI",
       "role": "Marketing",
-      "period": "08/2025 - Present"
+      "period": "08/2025 - Present",
+      "url": "https://www.linkedin.com/company/djsce-acm-sigai-student-chapter/posts/?feedView=all"
     },
     {
       "organization": "DJS ISACA",
       "role": "Tech Cyber",
-      "period": "03/2026 - Present"
+      "period": "03/2026 - Present",
+      "url": "https://www.linkedin.com/company/djs-isaca/posts/?feedView=all"
     }
   ],
   "achievements": [
     {
-    "title": "Breach Bytes 3.0 - CTF",
+      "title": "Breach Bytes 3.0 - CTF",
       "organization": "DJSCE, Mumbai",
       "rank": "9th",
       "date": "Oct 2025"
     },
     {
-        "title": "Bypass CTF",
+      "title": "Bypass CTF",
       "organization": "Army Institute of Technology, Pune",
       "rank": "12th",
       "date": "Jan 2026"
     },
-        {
+    {
       "title": "Cyber Matrix CTF 2026",
       "organization": "SAKEC, Mumbai",
       "rank": "4th",
@@ -93,7 +90,8 @@
       "organization": "MIT World Peace University, Pune",
       "rank": "1st",
       "date": "Mar 2026"
-    },{
+    },
+    {
       "title": "Technovate CTF 2026",
       "organization": "D.Y. Patil Ramrao Adik Institute of Technology (RAIT), Navi Mumbai",
       "rank": "1st",
@@ -103,23 +101,28 @@
   "links": [
     {
       "label": "GitHub",
-      "url": "https://github.com/v4rr10r"
+      "url": "https://github.com/v4rr10r",
+      "iconImage": "/footer-icons/github.svg"
     },
     {
       "label": "LinkedIn",
-      "url": "https://www.linkedin.com/in/vedant-shinde-7229a2325"
+      "url": "https://www.linkedin.com/in/vedant-shinde-7229a2325",
+      "iconImage": "/footer-icons/linkedin.svg"
     },
     {
       "label": "CTFtime",
-      "url": "https://ctftime.org/user/242931"
+      "url": "https://ctftime.org/user/242931",
+      "iconImage": "/footer-icons/ctftime.svg"
     },
     {
       "label": "Medium",
-      "url": "https://medium.com/@vedantshinde_59837"
+      "url": "https://medium.com/@vedantshinde_59837",
+      "iconImage": "/footer-icons/medium.svg"
     },
     {
-      "label": "My-Team",
-      "url": "https://rootrunners.dev/"
+      "label": "My Team",
+      "url": "https://rootrunners.dev/",
+      "iconImage": "/footer-icons/rootrunners.svg"
     }
   ]
 }

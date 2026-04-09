@@ -10,13 +10,13 @@ const links = [
 function Navbar({ siteName }) {
   return (
     <header className="site-header">
-      <div className="brand-lockup">
+      <NavLink className="brand-lockup" end to="/">
         <span className="brand-glyph">[::]</span>
         <div>
           <p className="brand-name">{siteName}</p>
-          <p className="brand-subtitle">Cybersecurity Enthusiast</p>
+          <p className="brand-subtitle">Research Log</p>
         </div>
-      </div>
+      </NavLink>
       <nav className="nav-links" aria-label="Primary">
         {links.map((link) => (
           <NavLink
@@ -31,7 +31,9 @@ function Navbar({ siteName }) {
           </NavLink>
         ))}
       </nav>
-      <ThemeToggle />
+      <div className="header-tools">
+        <ThemeToggle />
+      </div>
     </header>
   )
 }
