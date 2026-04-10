@@ -1,6 +1,6 @@
 ---
 title: ZipCrypto-Plaintext-Attack
-date: 2026-04-01
+date: 2026-04-010
 tags:
   - ZipCrypto
   - Known-Plaintext-Attack
