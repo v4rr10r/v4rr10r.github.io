@@ -167,4 +167,4 @@ TCHNVTE{13t_Me_90_HoM3}
 * Cross-platform tracking is essential (Twitter → Maps → Instagram → LinkedIn → GitHub)
 * When a key is explicitly mentioned, think of **classical ciphers** like Vigenère
 
-PWM by **W4RR1OR**
+PWN by **W4RR1OR**
