@@ -142,7 +142,7 @@ whoami
 
 ---
 
-## 🏁 Step 7: Capture Flags
+##  Step 7: Capture Flags
 
 ### Root Flag
 
