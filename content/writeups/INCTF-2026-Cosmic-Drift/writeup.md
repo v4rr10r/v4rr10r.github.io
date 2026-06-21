@@ -7,7 +7,7 @@ tags:
 summary: Exploited an unsafe object merge to pollute inherited JavaScript properties, authenticated as an inherited object, escalated privileges to admin, and abused the administrative file reader to retrieve the flag.
 ---
 
-# COSMOS NET - Writeup
+# Cosmic Drift - Writeup
 
 | Field        | Value            |
 | ------------ | ---------------- |
