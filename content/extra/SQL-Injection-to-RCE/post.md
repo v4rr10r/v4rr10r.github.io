@@ -40,7 +40,7 @@ A typical UNION payload to list databases looks like this:
 cn' UNION select 1,schema_name,3,4 from INFORMATION_SCHEMA.SCHEMATA-- -
 ```
 
-![](/image1.png)
+![](image1.png)
 
 Once you find a database that is not a default one (anything other than `mysql`, `information_schema`, `performance_schema`), dig into it. In this case the `dev` database had a `credentials` table with usernames, password hashes, and an API key.
 
@@ -64,7 +64,7 @@ or alternatively:
 cn' UNION SELECT 1, user, 3, 4 from mysql.user-- -
 ```
 
-![](/image2.png)
+![](image2.png)
 
 If the output comes back as root@localhost, that is a very good sign. Root in MySQL often indicates broad administrative privileges, but file access still depends on the granted privileges and server configuration. We'll verify those permissions next.
 
@@ -84,7 +84,7 @@ If that returns `Y`, you have superuser privileges. But to be thorough and see e
 cn' UNION SELECT 1, grantee, privilege_type, 4 FROM information_schema.user_privileges WHERE grantee="'root'@'localhost'"-- -
 ```
 
-![](/image3.png)
+![](image3.png)
 
 What you are looking for in that list is `FILE`. If it is there, the user can read files from the OS using `LOAD_FILE()` and potentially write them too. If it is not there, file operations will fail silently or throw an error.
 
@@ -98,7 +98,7 @@ With `FILE` privilege confirmed, you can read arbitrary files on the server usin
 cn' UNION SELECT 1, LOAD_FILE("/etc/passwd"), 3, 4-- -
 ```
 
-![](/image4.png)
+![](image4.png)
 
 This works if the OS user running MySQL has read access to the file, which is almost always the case for world-readable files like `/etc/passwd`.
 
@@ -130,7 +130,7 @@ Check the value with:
 cn' UNION SELECT 1, variable_name, variable_value, 4 FROM information_schema.global_variables where variable_name="secure_file_priv"-- -
 ```
 
-![](/image5.png)
+![](image5.png)
 
 If `variable_value` is empty, you are clear to write anywhere the OS user has write permissions. If it shows a path, you are limited to that directory. If it shows `NULL`, writing files is off the table entirely.
 
@@ -199,7 +199,7 @@ Navigate to the shell and pass a command via the `0` parameter:
 http://TARGET/shell.php?0=id
 ```
 
-![](/image6.png)
+![](image6.png)
 
 If you see the output of `id`, you have remote code execution. The server is now running arbitrary commands as `www-data` (the Apache process user in this case).
 
