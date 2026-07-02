@@ -347,8 +347,6 @@ For anyone building something similar, the fixes are straightforward:
 
 ## Proof of Concept / Solver
 
-_(Space reserved insert your solver script here.)_
-
 ```python
 import threading
 import requests
