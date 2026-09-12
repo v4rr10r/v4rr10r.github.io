@@ -14,13 +14,7 @@
     "debugging"
   ],
   "skills": {
-    "languages": [
-      "C / C++",
-      "Python",
-      "Java",
-      "JavaScript",
-      "HTML / CSS"
-    ],
+    "languages": ["C / C++", "Python", "Java", "JavaScript", "HTML / CSS"],
     "core": [
       "Reverse Engineering",
       "Web Exploitation",
@@ -108,6 +102,18 @@
       "organization": "D.Y. Patil Ramrao Adik Institute of Technology (RAIT), Navi Mumbai",
       "rank": "1st",
       "date": "Apr 2026"
+    },
+    {
+      "title": "Ghost in The Ledger CTF",
+      "organization": "Cyber Unbound, Mumbai",
+      "rank": "2nd",
+      "date": "Sept 2026"
+    },
+    {
+      "title": "Zettabyte 5.0 CTF",
+      "organization": "Thakur Ramnarayan College, Mumbai",
+      "rank": "1st",
+      "date": "Sept 2026"
     }
   ],
   "links": [
