@@ -1,3 +1,20 @@
+---
+title: Monoid
+ctf: K17-CTF 2026
+category: Reverse Engineering
+date: 2026-09-15
+tags:
+  - Reverse Engineering
+summary: Recovered the encrypted Julia fractal parameters by reversing the GHC-generated Haskell Core, reconstructing the custom XOR-based cipher, and using the recovered parameters to obtain the flag.
+---
+
+# Monoid - Writeup
+
+| Field        | Value               |
+| ------------ | ------------------- |
+| **CTF**      | K17-CTF 2026        |
+| **Category** | Reverse Engineering |
+
 # K17 CTF - monoid
 
 ## Challenge Description
@@ -13,6 +30,8 @@ out.txt
 ```
 
 [Main.dump-simpl](https://github.com/v4rr10r/v4rr10r.github.io/blob/main/content/writeups/K17-CTF-2026-monoid/Main.dump-simpl)
+
+Important File if you wanna try the challenge
 
 At first, the files look intimidating because the main source code is not directly provided. Instead, we are given compiler-generated output from a Haskell program.
 
