@@ -1,13 +1,15 @@
 import { useTheme } from '../context/useTheme.jsx'
 
 function ThemeToggle() {
-  const { theme, toggleTheme } = useTheme()
+  const { isTransitioning, theme, toggleTheme } = useTheme()
   const isDark = theme === 'dark'
 
   return (
     <button
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+      aria-busy={isTransitioning}
       className="theme-toggle"
+      disabled={isTransitioning}
       onClick={toggleTheme}
       type="button"
     >
