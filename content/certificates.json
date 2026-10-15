@@ -1,0 +1,47 @@
+[
+  {
+    "id": "certificate-01",
+    "title": "Certified Penetration Testing Professional (CPENT)",
+    "issuer": "EC-Council",
+    "date": "2026-09-18",
+    "image": "/certificates/certificate-01.png",
+    "credentialUrl": null,
+    "enabled": true
+  },
+  {
+    "id": "certificate-02",
+    "title": "APIsec Certified Practitioner",
+    "issuer": "APIsec University",
+    "date": "2026-06-15",
+    "image": "/certificates/certificate-02.png",
+    "credentialUrl": null,
+    "enabled": true
+  },
+  {
+    "id": "certificate-03",
+    "title": "Artificial Intelligence for Cybersecurity",
+    "issuer": "Coursera",
+    "date": "2026-09-12",
+    "image": "/certificates/certificate-03.png",
+    "credentialUrl": null,
+    "enabled": true
+  },
+  {
+    "id": "certificate-04",
+    "title": "Certified Junior Web Penetration Tester (CJWPT)",
+    "issuer": "Hack & Fix",
+    "date": "2026-06-18",
+    "image": "/certificates/certificate-04.png",
+    "credentialUrl": null,
+    "enabled": true
+  },
+  {
+    "id": "certificate-05",
+    "title": "Certified Threat Detection Analyst (CTDA)",
+    "issuer": "Hack & Fix",
+    "date": "2026-06-07",
+    "image": "/certificates/certificate-05.png",
+    "credentialUrl": null,
+    "enabled": true
+  }
+]

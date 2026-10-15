@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 function ContentCard({ item, to, variant = 'writeup' }) {
-  const label = variant === 'writeup' ? `CTF // ${item.ctfName}` : `${item.collection.toUpperCase()} // Research note`
+  const label = variant === 'writeup' ? `CTF // ${item.ctfName}` : item.collection === 'labs' ? 'Lab' : 'Blog'
   const summary = variant === 'writeup' ? item.summary : item.description
   const cardClassName = `content-card panel${variant === 'writeup' ? ' content-card-writeup' : ''}`
 

@@ -1,22 +1,29 @@
-import { Link } from 'react-router-dom'
-import RevealSection from '../components/RevealSection.jsx'
+import { Link } from "react-router-dom";
+import RevealSection from "../components/RevealSection.jsx";
 
 function ExtraPage({ posts }) {
   return (
     <div className="page-stack">
       <section className="panel page-hero">
-        <p className="eyebrow">Extra</p>
-        <h1>Research posts and side quest deep dives.</h1>
+        <p className="eyebrow">Blogs</p>
+        <h1>BLOGS</h1>
         <p className="support-copy">
-         
+          Lab walkthroughs, techniques, and things I Security Research learned
+          along the way.
         </p>
       </section>
 
       <RevealSection className="notebook-index panel">
         {posts.map((post) => (
-          <Link className="notebook-index-item" key={post.slug} to={`/extra/${post.slug}`}>
+          <Link
+            className="notebook-index-item"
+            key={post.slug}
+            to={`/blogs/${post.slug}`}
+          >
             <div className="notebook-index-copy">
-              <p className="card-kicker">{post.collection.toUpperCase()} // Research note</p>
+              <p className="card-kicker">
+                {post.collection === "labs" ? "Lab" : "Blog"}
+              </p>
               <h2>{post.title}</h2>
               <p className="card-copy">{post.description}</p>
             </div>
@@ -30,15 +37,13 @@ function ExtraPage({ posts }) {
                     </span>
                   ))}
                 </div>
-              ) : (
-                <span>No tags yet</span>
-              )}
+              ) : null}
             </div>
           </Link>
         ))}
       </RevealSection>
     </div>
-  )
+  );
 }
 
-export default ExtraPage
+export default ExtraPage;

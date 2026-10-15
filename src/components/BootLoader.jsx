@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 const TARGET_TEXT = 'W4RR1OR'
 const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
@@ -14,10 +14,12 @@ function randomCharacter() {
 
 function BootLoader({ onComplete }) {
   const targetCharacters = useMemo(() => TARGET_TEXT.split(''), [])
-  const letterDurationsRef = useRef(
+  const [letterDurations] = useState(() =>
     targetCharacters.map(() => LETTER_MIN + Math.floor(Math.random() * LETTER_VARIANCE)),
   )
-  const letterCadenceRef = useRef(targetCharacters.map(() => 26 + Math.floor(Math.random() * 30)))
+  const [letterCadences] = useState(() =>
+    targetCharacters.map(() => 26 + Math.floor(Math.random() * 30)),
+  )
   const [displayCharacters, setDisplayCharacters] = useState(() =>
     targetCharacters.map(() => randomCharacter()),
   )
@@ -30,8 +32,8 @@ function BootLoader({ onComplete }) {
   const [jitterMap, setJitterMap] = useState(() => targetCharacters.map(() => ({ x: 0, y: 0, rotate: 0 })))
   const [screenShake, setScreenShake] = useState({ x: 0, y: 0 })
   const totalDecodeDuration = useMemo(
-    () => letterDurationsRef.current.reduce((sum, duration) => sum + duration, BOOT_DELAY),
-    [],
+    () => letterDurations.reduce((sum, duration) => sum + duration, BOOT_DELAY),
+    [letterDurations],
   )
   const totalDuration = totalDecodeDuration + FINAL_PAUSE + FADE_DURATION
 
@@ -45,8 +47,8 @@ function BootLoader({ onComplete }) {
     let shakeBurstActive = false
     let lastJitterUpdate = 0
     let finalShakeTriggered = false
-    const letterStartOffsets = letterDurationsRef.current.reduce((offsets, duration, index) => {
-      offsets[index] = index === 0 ? 0 : offsets[index - 1] + letterDurationsRef.current[index - 1]
+    const letterStartOffsets = letterDurations.reduce((offsets, duration, index) => {
+      offsets[index] = index === 0 ? 0 : offsets[index - 1] + letterDurations[index - 1]
       return offsets
     }, [])
 
@@ -68,8 +70,8 @@ function BootLoader({ onComplete }) {
         const decodeElapsed = elapsed - BOOT_DELAY
         let accumulated = 0
 
-        for (let index = 0; index < letterDurationsRef.current.length; index += 1) {
-          const duration = letterDurationsRef.current[index]
+        for (let index = 0; index < letterDurations.length; index += 1) {
+          const duration = letterDurations[index]
 
           if (decodeElapsed >= accumulated + duration) {
             nextResolvedCount = index + 1
@@ -93,7 +95,7 @@ function BootLoader({ onComplete }) {
           }
 
           const decodeOffset = elapsed - BOOT_DELAY - letterStartOffsets[Math.min(index, nextResolvedCount)]
-          const cadence = letterCadenceRef.current[index]
+          const cadence = letterCadences[index]
           const shouldSkipFrame = Math.random() < 0.18 && decodeOffset % 84 < 26
 
           if (shouldSkipFrame || decodeOffset % cadence > cadence * 0.62) {
@@ -212,7 +214,7 @@ function BootLoader({ onComplete }) {
       window.clearTimeout(burstShakeTimeout)
       window.clearTimeout(noiseTimeout)
     }
-  }, [onComplete, targetCharacters, totalDecodeDuration, totalDuration])
+  }, [letterCadences, letterDurations, onComplete, targetCharacters, totalDecodeDuration, totalDuration])
 
   return (
     <div

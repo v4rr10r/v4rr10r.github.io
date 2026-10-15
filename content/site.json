@@ -1,17 +1,16 @@
 {
   "name": "W4RR1OR",
-  "tagline": "Security Research Notebook",
+  "tagline": "W4RR1OR / SECURITY RESEARCH",
   "intro": {
-    "headline": "Hi, I'm W4RR1OR.",
-    "description": "I'm a cybersecurity enthusiast who enjoys solving CTF challenges and exploring different areas of security.",
-    "supporting": "I like building and breaking systems to understand how they work. Currently breaking systems with RootRunners."
+    "headline": "Hey, I'm W4RR1OR.",
+    "description": "I break things to understand how they work.",
+    "supporting": "I'm a CTF player who enjoys reversing binaries, exploring web vulnerabilities, and figuring out how things work under the hood."
   },
-  "about": "I'm interested in cybersecurity and spend most of my time learning through CTFs and hands-on challenges. I enjoy analyzing systems, debugging issues, and understanding how things work at a deeper level, especially when it comes to vulnerabilities and exploits.",
   "focusTracks": [
-    "reverse-engineering",
-    "web-exploitation",
-    "ctf-writeups",
-    "debugging"
+    "Reverse engineering",
+    "Web exploitation",
+    "CTF writeups",
+    "Debugging"
   ],
   "skills": {
     "languages": ["C / C++", "Python", "Java", "JavaScript", "HTML / CSS"],
@@ -97,6 +96,27 @@
       "rank": "3rd",
       "date": "Feb 2026"
     },
+    {
+      "title": "Zephyr CTF 2026",
+      "organization": "Thakur College of Engineering and Technology, Mumbai",
+      "rank": "2nd",
+      "date": "Sep 2026"
+    },
+
+    {
+      "title": "Null Origin CTF 2026: Grand Finale",
+      "organization": "CyberXoX",
+      "rank": "3rd",
+      "date": "Sep 2026"
+    },
+
+    {
+      "title": "Besides Mumbai CTF 2026",
+      "organization": "Besides Mumbai",
+      "rank": "4th",
+      "date": "Sep 2026"
+    },
+
     {
       "title": "Technovate CTF",
       "organization": "D.Y. Patil Ramrao Adik Institute of Technology (RAIT), Navi Mumbai",

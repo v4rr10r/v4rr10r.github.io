@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import MarkdownArticle from '../components/MarkdownArticle.jsx'
+import ArticleReader from '../components/ArticleReader.jsx'
 
 function WriteupDetailPage({ writeups }) {
   const { slug } = useParams()
@@ -9,7 +9,7 @@ function WriteupDetailPage({ writeups }) {
     return (
       <section className="panel empty-state">
         <h1>Writeup not found</h1>
-        <p>The requested folder was not part of the current build output.</p>
+        <p>That writeup could not be found.</p>
         <Link className="inline-cta" to="/writeups">
           Back to writeups
         </Link>
@@ -17,27 +17,7 @@ function WriteupDetailPage({ writeups }) {
     )
   }
 
-  return (
-    <div className="page-stack">
-      <Link className="back-link" to="/writeups">
-        {'<-'} Back to writeups
-      </Link>
-      <section className="panel detail-hero">
-        <p className="eyebrow">{writeup.ctfName}</p>
-        <h1>{writeup.challengeName}</h1>
-        <p className="support-copy">{writeup.summary}</p>
-        <div className="detail-meta-row">
-          <span className="chip">{writeup.displayDate}</span>
-          {writeup.tags.map((tag) => (
-            <span className="chip chip-muted" key={tag}>
-              {tag}
-            </span>
-          ))}
-        </div>
-      </section>
-      <MarkdownArticle baseDirectory={writeup.baseDirectory} content={writeup.content} />
-    </div>
-  )
+  return <ArticleReader entries={writeups} entry={writeup} type="writeup" />
 }
 
 export default WriteupDetailPage

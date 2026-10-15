@@ -13,8 +13,8 @@ function Footer({ links = [], siteName }) {
     <footer className="site-footer">
       <div className="footer-divider" aria-hidden="true" />
       <div className="footer-inner">
-        <p className="footer-label">{siteName} // contact endpoints</p>
-        <div className="footer-icon-row" role="list">
+        <p className="footer-label">Find me elsewhere</p>
+        <div className="footer-icon-row">
           {links.map((link) => {
             const Icon = resolveFooterIcon(link)
 
@@ -25,7 +25,6 @@ function Footer({ links = [], siteName }) {
                 href={link.url}
                 key={link.label}
                 rel="noreferrer"
-                role="listitem"
                 target="_blank"
                 title={link.label}
               >

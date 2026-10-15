@@ -6,7 +6,12 @@ function RevealSection({ children, className = '', ...props }) {
   useEffect(() => {
     const element = elementRef.current
 
-    if (!element || typeof IntersectionObserver === 'undefined') {
+    if (!element) {
+      return undefined
+    }
+
+    if (typeof IntersectionObserver === 'undefined') {
+      element.dataset.visible = 'true'
       return undefined
     }
 

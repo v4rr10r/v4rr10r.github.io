@@ -26,6 +26,8 @@ function CursorTrail() {
       return undefined
     }
 
+    const appStage = document.querySelector('.app-stage')
+
     const emitFragment = (x, y, isHovering) => {
       const container = containerRef.current
 
@@ -60,6 +62,7 @@ function CursorTrail() {
     }
 
     const updateCursor = () => {
+      frameRef.current = 0
       const dot = dotRef.current
       const glow = glowRef.current
 
@@ -69,45 +72,53 @@ function CursorTrail() {
 
       const currentPoint = currentPointRef.current
       const targetPoint = targetPointRef.current
-      const easing = isHoveringRef.current ? 0.26 : 0.2
+      const easing = isHoveringRef.current ? 0.38 : 0.3
+      const distanceX = targetPoint.x - currentPoint.x
+      const distanceY = targetPoint.y - currentPoint.y
 
-      currentPoint.x += (targetPoint.x - currentPoint.x) * easing
-      currentPoint.y += (targetPoint.y - currentPoint.y) * easing
+      currentPoint.x += distanceX * easing
+      currentPoint.y += distanceY * easing
 
-      const translate = `translate3d(${currentPoint.x}px, ${currentPoint.y}px, 0)`
+      dot.style.transform = `translate3d(${targetPoint.x}px, ${targetPoint.y}px, 0)`
+      glow.style.transform = `translate3d(${currentPoint.x}px, ${currentPoint.y}px, 0)`
 
-      dot.style.transform = translate
-      glow.style.transform = translate
+      if (Math.abs(distanceX) + Math.abs(distanceY) > 0.4) {
+        frameRef.current = window.requestAnimationFrame(updateCursor)
+      }
+    }
 
-      frameRef.current = window.requestAnimationFrame(updateCursor)
+    const wakeCursor = () => {
+      if (!frameRef.current) frameRef.current = window.requestAnimationFrame(updateCursor)
     }
 
     const handlePointerMove = (event) => {
+      if (event.pointerType && event.pointerType !== 'mouse' && event.pointerType !== 'pen') return
+      if (!appStage?.classList.contains('app-stage-ready')) return
+
       const now = performance.now()
       const target = targetPointRef.current
-      const deltaX = Math.abs(event.clientX - lastMoveRef.current.x)
-      const deltaY = Math.abs(event.clientY - lastMoveRef.current.y)
-      const movedEnough = deltaX + deltaY > 11
-      const hoverBoost = isHoveringRef.current ? 1.35 : 1
-      const minInterval = isHoveringRef.current ? 82 : 132
+      const movedEnough =
+        Math.hypot(event.clientX - lastMoveRef.current.x, event.clientY - lastMoveRef.current.y) > 18
+      const minInterval = isHoveringRef.current ? 90 : 125
+      const firstMove = !hasPointerRef.current
 
       target.x = event.clientX
       target.y = event.clientY
 
-      if (!hasPointerRef.current) {
+      if (firstMove) {
         currentPointRef.current = { x: event.clientX, y: event.clientY }
+        lastMoveRef.current = { x: event.clientX, y: event.clientY }
         hasPointerRef.current = true
+        document.body.classList.add('custom-cursor-enabled', 'cursor-pointer-active')
       }
 
-      if (
-        movedEnough &&
-        now - lastEmitRef.current > minInterval &&
-        Math.random() < 0.12 * hoverBoost
-      ) {
+      if (!firstMove && movedEnough && now - lastEmitRef.current > minInterval) {
         lastEmitRef.current = now
         lastMoveRef.current = { x: event.clientX, y: event.clientY }
         emitFragment(event.clientX, event.clientY, isHoveringRef.current)
       }
+
+      wakeCursor()
     }
 
     const handlePointerOver = (event) => {
@@ -118,25 +129,28 @@ function CursorTrail() {
     }
 
     const handlePointerLeave = () => {
-      document.body.classList.remove('cursor-hovering')
+      hasPointerRef.current = false
+      isHoveringRef.current = false
+      document.body.classList.remove('cursor-hovering', 'cursor-pointer-active', 'custom-cursor-enabled')
     }
 
-    frameRef.current = window.requestAnimationFrame(updateCursor)
     window.addEventListener('pointermove', handlePointerMove, { passive: true })
     document.addEventListener('pointerover', handlePointerOver, { passive: true })
+    document.documentElement.addEventListener('pointerleave', handlePointerLeave)
     window.addEventListener('blur', handlePointerLeave)
 
     return () => {
       window.cancelAnimationFrame(frameRef.current)
       window.removeEventListener('pointermove', handlePointerMove)
       document.removeEventListener('pointerover', handlePointerOver)
+      document.documentElement.removeEventListener('pointerleave', handlePointerLeave)
       window.removeEventListener('blur', handlePointerLeave)
-      document.body.classList.remove('cursor-hovering')
+      document.body.classList.remove('cursor-hovering', 'cursor-pointer-active', 'custom-cursor-enabled')
     }
   }, [])
 
   return (
-    <div className="cursor-layer" ref={containerRef}>
+    <div className="cursor-layer" ref={containerRef} aria-hidden="true">
       <span className="cursor-glow" ref={glowRef} />
       <span className="cursor-dot" ref={dotRef} />
     </div>
